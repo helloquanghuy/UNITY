@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         txtHightScore = GameObject.Find("txtHightScore").GetComponent<Text>();
         txtHeath = GameObject.Find("txtHeath").GetComponent<Text>();
         anim = GetComponent<Animator>();
-        rigi = GetComponent<Rigidbody2D>(); 
+        rigi = GetComponent<Rigidbody2D>();
 
         //chỗ này là để test nếu xuất bản thì phải xóa
         PlayerPrefs.SetInt("hightscore", 0);
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //anim.SetBool("Grounded", grounded);
+        anim.SetBool("Grounded", grounded);
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -54,7 +54,8 @@ public class Player : MonoBehaviour
                 doubleJumb = true;
                 gameObject.GetComponent<Rigidbody2D>().velocity
                       = new Vector2(gameObject.GetComponent<Rigidbody2D>().velocity.x, jumb);
-            } else
+            }
+            else
             {
                 if (doubleJumb)
                 {
@@ -72,10 +73,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            anim.SetBool("Walk",true);
+            anim.SetBool("Walk", true);
             gameObject.transform.Translate(Vector2.right * speed * Time.deltaTime);
             if (gameObject.transform.localScale.x < 0)
-            {   
+            {
                 gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
             }
         }
@@ -92,13 +93,11 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("Walk", false);
         }
-
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Coin")
+        if (collision.gameObject.tag == "Coin")
         {
             sound.Playsound("Coin");
 
@@ -110,23 +109,39 @@ public class Player : MonoBehaviour
                 txtHightScore.text = ("Hight Score: " + PlayerPrefs.GetInt("hightscore"));
             }
 
-        } else if (collision.gameObject.tag == "Monster")
+        }
+        
+        if (collision.gameObject.tag == "Monster")
         {
             ourHealth--;
-            
+
         }
         txtHeath.text = "<3:  " + ourHealth;
 
+        
         if (ourHealth <= 0)
         {
-
             Death();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "finalMapThor")
+        {
+            SceneManager.LoadScene("MapSkyHuy");
+        }
+        txtHeath.text = "<3:  " + ourHealth;
+
+        if (collision.gameObject.tag == "Bottom")
+        {
+            SceneManager.LoadScene("PlayGame");
         }
     }
 
     public void Death()
     {
-        if(PlayerPrefs.GetInt("hightscore") < countScore)
+        if (PlayerPrefs.GetInt("hightscore") < countScore)
         {
             PlayerPrefs.SetInt("hightscore", countScore);
         }
