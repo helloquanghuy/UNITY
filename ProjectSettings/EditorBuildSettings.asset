@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MapSkyHuy.unity
     guid: d8619cc6ee5dfc2438e2043e5aac3c30
+  - enabled: 1
+    path: Assets/Scenes/Map2_phu.unity
+    guid: 252c9e0aad3362e468405aaf04d21ff7
+  - enabled: 1
+    path: Assets/Scenes/Map_Phu_End.unity
+    guid: 5c6840f93d63ba240914cf2f411a358d
+  - enabled: 1
+    path: Assets/Scenes/PhuMap.unity
+    guid: 0bce24d55eb35df47bcab2028888045a
   m_configObjects: {}

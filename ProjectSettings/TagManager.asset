@@ -10,6 +10,9 @@ TagManager:
   - Sound
   - finalMapThor
   - Bottom
+  - MovingPlat
+  - Ground
+  - finalMapHuy
   layers:
   - Default
   - TransparentFX

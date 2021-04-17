@@ -131,11 +131,15 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("MapSkyHuy");
         }
+        if (collision.gameObject.tag == "finalMapHuy")
+        {
+            SceneManager.LoadScene("Map2_phu");
+        }
         txtHeath.text = "<3:  " + ourHealth;
 
         if (collision.gameObject.tag == "Bottom")
         {
-            SceneManager.LoadScene("PlayGame");
+            Death();
         }
     }
 
